@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>自动组卷</title>
+<link href="../css/blue.css" rel="stylesheet">
+<link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../css/addQuestions.css" rel='stylesheet' type='text/css' />
+<style type="text/css">
+	html, body {
+		font-family: 'Lato', 微软雅黑;
+		font-size: 100%;
+		background: #fff;
+	}
+	
+	body {
+		padding-top: 70px;
+	}
+	.form-control{
+		margin-top:0;
+	}
+	.close{
+		margin-bottom:0;
+	}
+	.input-group-addon span{
+		padding:0;
+	}
+	.questionTypeList{
+	    padding: 5px 0;
+	    margin: 0 0 0 5em; 
+	} 
+	#paperTypeList{
+		position: relative;
+	    display: block;
+	    padding: 10px 15px;
+	    margin-bottom: -1px;
+	    background-color: #fff;
+	    border: 1px solid #ddd;
+	    text-indent:1.2em;
+	}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header" style="margin-left: 40px;">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">首页</a>
+			</div>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="../QuestionBank/QuestionIndex.html">题库管理</a></li>
+					<li class="active"><a href="#">试卷管理<span class="sr-only">(current)</span></a></li>
+					<li><a href="#">考试管理</a></li>
+					<li><a href="#">成绩管理</a></li>
+					<li><a href="#">系统管理</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" style="margin-top: 0"
+							placeholder="输入关键词">
+					</div>
+					<button type="submit" class="btn btn-default">搜索</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">登录</a></li>
+					<li><a href="#">注册</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">个人中心<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">账户设置</a></li>
+							<li><a href="#">成绩管理</a></li>
+							<li><a href="#">考试入口</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">退出登录</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid" style="padding-left: 0;">
+		<div class="row-fluid">
+			<div class="col-xs-12 col-md-3 col-lg-3" style="padding-left: 0;">
+				<div class="user-img-div">
+					<img src="../images/20160322162501.jpg" class="img-thumbnail">
+					<div class="inner-text"
+						style="float: right; margin-top: 20px; padding-right: 12px;">
+						<label id="username">UserName</label><br /> <span
+							class="glyphicon glyphicon-cog"></span><a href="#"
+							class="inner-text" style="font-size: 1.2em">账户设置</a>
+					</div>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item">试卷管理</li>
+					<li id="paperTypeList" class="dropdown list-group-item">		
+						<a href="#" class="dropdown-toggleglyphicon" data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"><span class="glyphicon glyphicon-th-list"></span>试卷列表<span class="caret"></span></a>
+						<ul class="dropdown-menu questionTypeList" style="margin-bottom:0">
+							<li><a href="#">全部试卷</a></li>
+						</ul>	
+					</li>
+					<a href="" class="list-group-item active"><span
+						class="glyphicon glyphicon-file"></span>手动组卷</a>
+					<a href="" class="list-group-item"><span
+						class="glyphicon glyphicon-list-alt"></span>自动组卷</a>
+					<a href="" class="list-group-item"><span
+						class="glyphicon glyphicon-cloud-upload"></span>导入试卷</a>
+					<a href="" class="list-group-item"><span
+						class="glyphicon glyphicon-tags"></span>试卷分类</a>
+					<a href="#" class="list-group-item"><span
+						class="glyphicon glyphicon-trash"></span>回收站</a>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-md-9 col-lg-9">
+				<div>
+					<h2>试卷列表</h2>
+				</div>
+				<hr />
+				<form action="../AutoGetpapers" method="post" id="myForm" name="myForm">
+					<div>
+						<label>*试卷基础信息</label>
+						<div class="form-group" style="margin-bottom: 10px;">
+						<input  class="form-control" type="text" name="PaperName" id="PaperName" placeholder="试卷名称，必填项" />
+						</div>
+						<div class="form-group" style="margin-bottom: 10px;">
+						<textarea  class="form-control"  name="ExamDescription" id="ExamDescription" placeholder="考试说明，必填项" ></textarea>
+						</div>
+						<div class="form-group" style="margin-bottom: 10px;">
+							<div class="input-group">
+								<!-- <input class="form-control"  type="text" name="TotalPoint" placeholder="试卷总分，必填项" ><span id="basic-addon1" class="input-group-addon">分</span> -->			
+								<input class="form-control"  type="text" name="TotalTime" id="TotalTime" placeholder="考试时长，必填项" ><span id="basic-addon2" class="input-group-addon">分钟</span>
+							    <label class="form-control">试卷科目</label><span id="Subject" class="input-group-addon"><select name="subject" id="subject"> <option value="0"> 请选择...</option></select></span>
+							    <label class="form-control">总题数</label><span id="CountQuestions" class="input-group-addon">0</span>
+							    <label class="form-control">试卷总分</label><span id="TotalPoint" name="TotalPoint" class="input-group-addon">0</span>
+							    <input type="text" name="Tnum" id="Tnum" class="Tnum form-control" placeholder="试卷数量，必填项"><span id="Qnum" class="input-group-addon">份</span>
+							</div>
+						</div>
+						<hr style="border-bottom:1px dashed"/>
+						<!-- <label id="start" name="1" class="btn btn-block btn-info" >开始组织试卷</label> -->
+					</div>
+				
+				<div id="PaperPart" >
+					<div id="parts1">
+						<label>第一部分</label>
+						<div class="form-group" style="margin-bottom: 10px;">
+							<input  class="form-control" type="text" name="PartName1" placeholder="部分名称，必填项" />
+						</div>
+						<div class="form-group" style="margin-bottom: 10px;">
+							<textarea  class="form-control"  name="Description1" placeholder="答题说明，必填项" ></textarea>
+						</div>
+						<div class="form-group" style="margin-bottom: 10px;">
+							<div class="input-group">
+							<input type="text" id="Point1" name="Point1" placeholder="该部分每题分值" class="form-control"/><span id="Part1-Point"  class="input-group-addon">分</span>
+							<label class="form-control">题目总数</label><span id="Part1-Count"  class="input-group-addon">0</span>
+							<label class="form-control">题目类型</label><span id="Questionstype" class="input-group-addon"><select name="QType1" id="QType"> <option value="0"> 请选择...</option></select></span>
+							</div>
+								
+							<div class="contain-tip" id="contain-tip">	
+											
+							
+							 
+							 <div class="input-group tippes">
+							 <label class="form-control">知识点类型</label><span id="TipsType" class="input-group-addon"><select name="Tips11" id="Tips"> <option value="0"> 请选择...</option></select></span>
+							 </div>
+							 <div class="input-group">
+							 <input type="text" name="questionnum11" id="questionnum11" class="num form-control" placeholder="题目数量"><span id="Part1-Count"  class="input-group-addon">题</span>
+						     <label class="form-control">难度比例</label>
+						     <span id="diffculty1"  class="input-group-addon">简单</span> <input type="text" name="sample11" id="sample" class="diffculty form-control" placeholder="填题数">
+						     <span id="diffculty2"  class="input-group-addon">普通</span> <input type="text" name="ordinary11" id="ordinary" class="num form-control" placeholder="填题数">
+						     <span id="diffculty3"  class="input-group-addon">困难</span> <input type="text" name="hard11" id="hard" class="num form-control" placeholder="填题数">
+							</div>
+							</div>
+							<input type="hidden" id="Tipsnumb1" name="Tipsnumb1" value="1"/>
+						<label id="addTips1" name="1" class="btn btn-block btn-info" onclick="addtip();">点此添加知识点</label>
+				
+					</div>	
+				
+				</div><!--Part1-->
+					<hr style="border-bottom:1px dashed"/>
+				</div><!--PaperPart -->
+				<!-- </form>	 -->
+				<div id="otherPart">
+					<label id="addParts" name="1" class="btn btn-block btn-info" >点此添加新部分</label>
+					<input type="text" id="test" name="test">
+					<input type="button" id="save" name="save" value="开始组卷" onclick="submited();" class="btn btn-block btn-primary">
+					
+				</div>
+			</form>										
+			</div><!-- 9格栅栏 -->
+		</div><!-- 第2个 -->		
+	</div><!-- 第1个 -->
+
+</body>
+<script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="../js/batchadd.js"></script> -->
+<script type="text/javascript" src="../js/autoGetpapers.js"></script>
+<!-- <script type="text/javascript" src="../js/addQuestion.js"></script> -->
+<script src="../js/icheck.js"></script>
+
+
+</html>

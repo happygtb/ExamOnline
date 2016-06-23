@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加题目</title>
+<link href="../css/blue.css" rel="stylesheet">
+<link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../css/addQuestions.css" rel='stylesheet' type='text/css' />
+<style type="text/css">
+	html, body {
+		font-family: 'Lato', 微软雅黑;
+		font-size: 100%;
+		background: #fff;
+	}
+	
+	body {
+		padding-top: 70px;
+	}
+	.form-control{
+		margin-top:0;
+	}
+	.close{
+		margin-bottom:0;
+	}
+	.input-group-addon span{
+		padding:0;
+	}
+	.questionTypeList{
+	    padding: 5px 0;
+	    margin: 0 0 0 5em; 
+	} 
+	#questionTypeList{
+		position: relative;
+	    display: block;
+	    padding: 10px 15px;
+	    margin-bottom: -1px;
+	    background-color: #fff;
+	    border: 1px solid #ddd;
+	    text-indent:1.2em;
+	}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header" style="margin-left: 40px;">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">首页</a>
+			</div>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">题库管理<span class="sr-only">(current)</span></a></li>
+					<li><a href="#">试卷管理</a></li>
+					<li><a href="#">考试管理</a></li>
+					<li><a href="#">成绩管理</a></li>
+					<li><a href="#">系统管理</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" style="margin-top: 0"
+							placeholder="输入关键词">
+					</div>
+					<button type="submit" class="btn btn-default">搜索</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">登录</a></li>
+					<li><a href="#">注册</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">个人中心<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">账户设置</a></li>
+							<li><a href="#">成绩管理</a></li>
+							<li><a href="#">考试入口</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">退出登录</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid" style="padding-left: 0;">
+		<div class="row-fluid">
+			<div class="col-xs-12 col-md-3 col-lg-3" style="padding-left: 0;">
+				<div class="user-img-div">
+					<img src="../images/20160322162501.jpg" class="img-thumbnail">
+					<div class="inner-text"
+						style="float: right; margin-top: 20px; padding-right: 12px;">
+						<label id="username">UserName</label><br /> <span
+							class="glyphicon glyphicon-cog"></span><a href="#"
+							class="inner-text" style="font-size: 1.2em">账户设置</a>
+					</div>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item">题库管理</li>
+					<li id="questionTypeList" class="dropdown list-group-item">		
+						<a href="#" class="dropdown-toggleglyphicon" data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"><span class="glyphicon glyphicon-th-list"></span>题目列表<span class="caret"></span></a>
+						<ul class="dropdown-menu questionTypeList" style="margin-bottom:0">
+							<li><a href="#">全部题目</a></li>
+						</ul>	
+					</li>
+					<a href="addQuestions.html" class="list-group-item active"><span
+						class="glyphicon glyphicon-cloud-upload"></span>添加题目</a>
+					<a href="checkQuestionType.html" class="list-group-item"><span
+						class="glyphicon glyphicon-bookmark"></span>题型管理</a>
+					<a href="checkSubject.html" class="list-group-item"><span
+						class="glyphicon glyphicon-book"></span>科目管理</a>
+					<a href="checkTips.html" class="list-group-item"><span
+						class="glyphicon glyphicon-tags"></span>知识点管理</a>
+					<a href="#" class="list-group-item"><span
+						class="glyphicon glyphicon-trash"></span>批量删除</a>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-md-9 col-lg-9">
+				<div>
+					<h2>添加题目</h2>
+					<a href="importQuestions.html">点击这里从Excel导入</a>
+				</div>
+				<hr />
+				<form action="../AddQuestion" method="post" id="myForm"
+					name="myForm">
+					<div>
+						<label>* 科目：</label>&emsp; <select name="subject" id="subject"
+							class="selector form-control" style="width: 8em;">
+							<option value="0">请选择...</option>
+						</select> &emsp; <label>* 题型：</label> <select name="QType" id="QType"
+							class="selector form-control" style="width: 8em;">
+							<option value="0">请选择...</option>
+						</select> <br /> <label>* 知识点：</label> <select name="Tips" id="Tips"
+							class="selector form-control" style="width: 8em;margin:10px 0;">
+							<option value="0">请选择...</option>
+						</select> &emsp; <a href="checkQuestionType.html">添加知识点</a>
+					</div>
+					<div id="addQuestion">
+						<div>
+							<label>* 题目难度：</label>
+							<div id="star">
+								<ul style="list-style-type:none;">
+									<li><a href="javascript:;">1</a></li>
+									<li><a href="javascript:;">2</a></li>
+									<li><a href="javascript:;">3</a></li>
+									<li><a href="javascript:;">4</a></li>
+									<li><a href="javascript:;">5</a></li>
+								</ul>
+								<span id="star_span"></span>
+								<p></p>
+								<input type="hidden" name="Difficulty" id="Difficulty" value="">
+							</div>
+							<label style="margin-top:10px;">* 出题人姓名：</label>
+							<div class="input-group" style="margin-bottom: 10px;">
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+								</div>
+								<input type="text" name="RoteName" placeholder="请输入出题人姓名" class="form-control">
+							</div>
+							<label>* 联系电话：</label>
+							<div class="input-group" style="margin-bottom: 10px;">
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+								</div>
+								<input type="text" name="RoteTel" placeholder="请输入联系电话" class="form-control">
+							</div>
+							<label>* 电子邮件：</label>
+							<div class="input-group" style="margin-bottom: 10px;">
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+								</div>
+								<input type="text" name="RoteEmail" placeholder="请输入邮件" class="form-control">
+							</div>
+							<label>* 出题人专业信息：</label>
+							<select name="College" id="College" class="selector form-control"
+								style="width: 10em;">
+								<option value="0">请选择学校</option>
+							</select> <select name="School" id="School" class="selector form-control"
+								style="width: 10em;">
+								<option value="0">请选择学院</option>
+							</select> <select name="Major" id="Major" class="selector form-control"
+								style="width: 10em;margin-bottom: 10px;">
+								<option value="0">请选择专业</option>
+							</select> <br />
+						</div>
+						<div id="Stem">
+							<label>* 题干/背景材料：</label> <br />
+							<textarea name="QuestionStem" id="QuestionStem"
+								placeholder="请输入题干/背景材料..." class="form-control"
+								></textarea>
+						</div>
+						<div id="options">
+							<div id="SingleChoice" style="display: none">
+								<div id="SCoption">
+									<label>* 选项：</label> <br />
+									<div id="items1">
+										<p>
+											<div class="input-group">
+												<div class="input-group-addon">
+													<input type="radio" value="False" name="SCoptions"
+													id="SCoptions" onchange="myFunction()" checked="checked">
+												</div>
+												<input type="text" name="SCTipsDetail1" class="form-control">
+												<div class="input-group-addon">
+													<label id="1" name="SCRemove" onclick="removeOption(this.id)" class="close" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</label>
+												</div>
+											</div>
+										</p>
+									</div>
+									<div id="items2">
+										<p>
+											<div class="input-group">
+												<div class="input-group-addon">
+													<input type="radio" value="False" name="SCoptions"
+													id="SCoptions" onchange="myFunction()">
+												</div>
+												<input type="text" name="SCTipsDetail2" class="form-control">
+												<div class="input-group-addon">
+													<label id="2" name="SCRemove" onclick="removeOption(this.id)" class="close" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</label>
+												</div>
+											</div>
+										</p>
+									</div>
+								</div>
+								<label id="addOptions" name="2" class="btn btn-block btn-primary">点此添加一个选项</label>
+							</div>
+							<div id="MultipleChoice" style="display: none">
+								<div id="MCoption">
+									<label>* 选项：</label> <br />
+									<div id="MCitems1">
+										<p>
+											<div class="input-group">
+												<div class="input-group-addon">
+													<input type="checkbox" value="False" name="MCoptions1"
+														id="MCoptions1" checked="checked">
+												</div>
+												<input type="text" name="MCTipsDetail1" class="form-control">
+												<div class="input-group-addon">
+													<label id="1" onclick="removeOptionII(this.id)" class="close" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</label>
+												</div>
+											</div>
+										</p>
+									</div>
+									<div id="MCitems2">
+										<p>
+											<div class="input-group">
+												<div class="input-group-addon">
+													<input type="checkbox" value="False" name="MCoptions2"
+														id="MCoptions2">
+												</div>
+												<input type="text" name="MCTipsDetail2" class="form-control">
+												<div class="input-group-addon">
+													<label id="2" onclick="removeOptionII(this.id)" class="close" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</label>
+												</div>
+											</div>
+										</p>
+									</div>
+								</div>
+								<label id="addMCoptions" name="2" class="btn btn-block btn-primary">点此添加一个选项</label>
+							</div>
+							<div id="TFChoice" style="display: none">
+								<div id="TFoption">
+									<label>* 选项：</label> <br />
+									<div id="TFitems1">
+										<p>
+											<input type="radio" value="True" name="TFoptions"
+												id="TFoptions">&emsp;正确
+										</p>
+									</div>
+									<div id="TFitems2">
+										<p>
+											<input type="radio" value="False" name="TFoptions"
+												id="TFoptions">&emsp;错误
+										</p>
+									</div>
+								</div>
+							</div>
+							<div id="ShortAnswerQuestion" style="display: none">
+								<div>
+									<label>* 答案要点：</label> <br />
+									<div id="ShortAnswer">
+										<p>
+											<textarea name="ShortAnswer" id="ShortAnswer"
+												class="form-control"></textarea>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br /> <label>* 关键词（用空格隔开）：</label>
+						<p>
+							<textarea name="questionLabel" class="form-control"
+							 placeholder="为题目添加关键词（多个关键词用空格隔开）"></textarea>
+						</p>
+						<input type="button" value="上传题目" onclick="submitFunction()"
+							class="btn btn-primary">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="footer-sec">Copyright © 2016.Company name All rights
+		reserved.</div>
+</body>
+
+<script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../js/addQuestion.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script src="../js/icheck.js"></script>
+</html>

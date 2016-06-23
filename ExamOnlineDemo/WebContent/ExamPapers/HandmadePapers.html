@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>手动组卷</title>
+<link href="../css/blue.css" rel="stylesheet">
+<link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../css/addQuestions.css" rel='stylesheet' type='text/css' />
+<style type="text/css">
+	html, body {
+		font-family: 'Lato', 微软雅黑;
+		font-size: 100%;
+		background: #fff;
+	}
+	
+	body {
+		padding-top: 70px;
+	}
+	.form-control{
+		margin-top:0;
+	}
+	.close{
+		margin-bottom:0;
+	}
+	.input-group-addon span{
+		padding:0;
+	}
+	.questionTypeList{
+	    padding: 5px 0;
+	    margin: 0 0 0 5em; 
+	} 
+	#paperTypeList{
+		position: relative;
+	    display: block;
+	    padding: 10px 15px;
+	    margin-bottom: -1px;
+	    background-color: #fff;
+	    border: 1px solid #ddd;
+	    text-indent:1.2em;
+	}
+	#aa{
+		margin-top:10px;
+	}
+	label[name='PartRemove']{
+		margin-top:10px;
+	}
+	#filter{
+		margin:0;
+	}
+	#addQuestionbuttons,#questionSearch{
+		display:inline;
+	}
+	#addQuestionbuttons{
+		float:left;
+		margin-right:1em;
+	}
+	.article{
+		margin-top:15px;
+		padding-left:0;
+		list-style-type:none;
+	}
+	.icheckbox_square-blue{
+		margin-right:1em;
+	}
+	.iradio_square-blue{
+		margin-right:1em;
+	}
+	.type, .tips, .Difficulty {
+		font-weight: normal;
+		margin: 10px;
+		padding: 0 5px;
+		background-color: #EDF0F3;
+		border: 1px solid transparent;
+		border-radius: 4px;
+	}
+	.label{
+		color:#333;
+	}
+	.options p{
+		padding:2px 0;
+		margin-left:1em;
+		margin-right:1em;
+	}
+	.title{
+		margin:0 1em 5px 1em;
+	}
+	.items{
+		padding:10px;
+	}
+	#quespoint{
+		float:right;
+		text-align:right;
+	}
+	.items li{
+		list-style-type:none;
+	}
+	.PartQuestions{
+		font-size:90%;
+	}
+	.type{
+		display:none;
+	}
+	#ShortAnswer{
+		background-color: #FFF;
+		margin-top:8px;
+	}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header" style="margin-left: 40px;">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">首页</a>
+			</div>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="../QuestionBank/QuestionIndex.html">题库管理</a></li>
+					<li class="active"><a href="#">试卷管理<span class="sr-only">(current)</span></a></li>
+					<li><a href="#">考试管理</a></li>
+					<li><a href="#">成绩管理</a></li>
+					<li><a href="#">系统管理</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" style="margin-top: 0"
+							placeholder="输入关键词">
+					</div>
+					<button type="submit" class="btn btn-default">搜索</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">登录</a></li>
+					<li><a href="#">注册</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">个人中心<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">账户设置</a></li>
+							<li><a href="#">成绩管理</a></li>
+							<li><a href="#">考试入口</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">退出登录</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid" style="padding-left: 0;">
+		<div class="row-fluid">
+			<div class="col-xs-12 col-md-3 col-lg-3" style="padding-left: 0;">
+				<div class="user-img-div">
+					<img src="../images/20160322162501.jpg" class="img-thumbnail">
+					<div class="inner-text"
+						style="float: right; margin-top: 20px; padding-right: 12px;">
+						<label id="username">UserName</label><br /> <span
+							class="glyphicon glyphicon-cog"></span><a href="#"
+							class="inner-text" style="font-size: 1.2em">账户设置</a>
+					</div>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item">试卷管理</li>
+					<li id="paperTypeList" class="dropdown list-group-item">		
+						<a href="#" class="dropdown-toggleglyphicon" data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"><span class="glyphicon glyphicon-th-list"></span>试卷列表<span class="caret"></span></a>
+						<ul class="dropdown-menu questionTypeList" style="margin-bottom:0">
+							<li><a href="#">全部试卷</a></li>
+						</ul>	
+					</li>
+					<a href="" class="list-group-item active"><span
+						class="glyphicon glyphicon-file"></span>手动组卷</a>
+					<a href="" class="list-group-item"><span
+						class="glyphicon glyphicon-list-alt"></span>自动组卷</a>
+					<a href="" class="list-group-item"><span
+						class="glyphicon glyphicon-cloud-upload"></span>导入试卷</a>
+					<a href="" class="list-group-item"><span
+						class="glyphicon glyphicon-tags"></span>试卷分类</a>
+					<a href="#" class="list-group-item"><span
+						class="glyphicon glyphicon-trash"></span>回收站</a>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-md-9 col-lg-9">
+				<div>
+					<h2>试卷内容</h2>
+				</div>
+				<hr />
+				<form action="../AddPaper" method="post" id="myForm" name="myForm">
+					<div>
+						<label>*试卷基础信息</label>
+						<div class="form-group" style="margin-bottom: 10px;">
+						<input  class="form-control" type="text" name="PaperName" id="PaperName" placeholder="试卷名称，必填项" />
+						</div>
+						<div class="form-group" style="margin-bottom: 10px;">
+						<textarea  class="form-control"  name="ExamDescription" id="ExamDescription" placeholder="考试说明，必填项" ></textarea>
+						</div>
+						<div class="form-group" style="margin-bottom: 10px;">
+							<div class="input-group">
+								<!-- <input class="form-control"  type="text" name="TotalPoint" placeholder="试卷总分，必填项" ><span id="basic-addon1" class="input-group-addon">分</span> -->			
+								<input class="form-control"  type="text" name="TotalTime" id="TotalTime" placeholder="考试时长，必填项" ><span id="basic-addon2" class="input-group-addon">分钟</span>
+							    <label class="form-control">总题数</label><span id="CountQuestions" class="input-group-addon">0</span>
+							    <label class="form-control">试卷总分</label><span id="TotalPoint" name="TotalPoint" class="input-group-addon">0</span>
+							    <label class="form-control">试卷难度</label><span id="Difficulty"  class="input-group-addon">0</span>
+							</div>
+						</div>
+						<hr style="border-bottom:1px dashed"/>
+						<!-- <label id="start" name="1" class="btn btn-block btn-info" >开始组织试卷</label> -->
+					</div>
+				
+				<div id="PaperPart" >
+					<div id="parts1">
+						<label>第一部分</label>
+						<div class="form-group" style="margin-bottom: 10px;">
+							<input  class="form-control" type="text" name="PartName1" placeholder="部分名称，必填项" />
+						</div>
+						<div class="form-group" style="margin-bottom: 10px;">
+							<textarea  class="form-control"  name="Description1" placeholder="答题说明，必填项" ></textarea>
+						</div>
+						<div class="form-group" style="margin-bottom: 10px;">
+							<div class="input-group">
+							<label class="form-control">部分分值</label><span id="Part1-Point"  class="input-group-addon">0</span>
+							<label class="form-control">题目总数</label><span id="Part1-Count"  class="input-group-addon">0</span>
+							<input type="hidden" id="PartPoint1" name="PartPoint1"/>
+							<input type="hidden" id="PartCount1" name="PartCount1"/>
+							<input type="hidden" id="oldPartCount1" name="oldPartCount1"/>
+							</div>
+							<div id="aa">题目列表 &emsp;
+								<label class="btn btn-default" onclick="showquestions(this.id)" id="p1">
+									<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>收起
+								</label>&emsp;
+								<label id='q1' href='#modal-container-1' onclick="begin('1')" role='button' data-toggle='modal' class="btn  btn-primary" >
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加题目
+								</label>
+							</div>						
+							<div class="PartQuestions" id="PartQuestions1" ></div>
+						
+						</div>
+				
+				</div><!--Part1-->
+				<hr style="border-bottom:1px dashed"/>
+				</div><!--PaperPart -->
+				</form>
+				<div id="otherPart" style="margin-bottom:2em;">
+					<label id="addParts" name="1" class="btn btn-block btn-info" >点此添加新部分</label>
+					<input type="button" id="save" name="save" value="保存试卷" onclick="save()" class="btn btn-block btn-primary">
+					
+				</div>										
+			</div><!-- 9格栅栏 -->
+		</div><!-- 第2个 -->		
+	</div><!-- 第1个 -->
+<div id="allbox">
+<div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" style="float:right" data-dismiss="modal" aria-hidden="true">×</button>
+			<h4 class="modal-title" id="myModalLabel">
+				添加题目
+			</h4>
+		</div>								
+		<div class="modal-body">
+			<div id="addQuestionbuttons"> 
+				<button id="allChecked" class="btn btn-default" onclick="selectAllDels(1);">
+					<span class="glyphicon glyphicon-check" aria-hidden="true"></span>全选
+				</button>
+	        </div>
+			<div id="questionFilter" class="btn-group">
+				<button id="addFolder" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>题型筛选&nbsp;<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu questionTypeList" id="filter">
+				</ul>
+			</div>																
+			<div id="questionSearch" style="float:right;">
+				<input type="text" name="search" id="search" placeholder="题干/知识点/题目标签" style="width:15em;" class="form-control"><!-- onkeypress="Search()" -->
+				<button  id="btn" class="btn btn-default" onclick="Search()">
+					<span class="glyphicon glyphicon-search" style="padding-right: 0;" aria-hidden="true"></span>
+				</button>
+			</div>										
+			<ul class="article" id="question1"></ul>										
+			<nav style="text-align:right;">
+			 	<ul class="pagination"  id="page-1" style="margin:0 10px 10px 0;"></ul>
+			</nav> 								
+		</div>
+		<div class="modal-footer">
+			<button type="button" onclick="addQid(this.name)" name="1" id="adds" data-dismiss="modal" class="btn btn-primary">
+				确认添加(单页添加！)
+			</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">
+				取消
+			</button> 
+		</div>
+	</div>
+	</div>
+</div>
+</div>
+</body>
+<script>
+
+</script>	
+<script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="../js/batchadd.js"></script> -->
+<script type="text/javascript" src="../js/handmadePapers.js"></script>
+<script src="../js/icheck.js"></script>
+</html>

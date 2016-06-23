@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>知识点管理</title>
+<script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../css/addQuestions.css" rel='stylesheet' type='text/css' />
+<link href="../css/check.all.css" rel='stylesheet' type='text/css' />
+<style type="text/css">
+	html, body {
+		font-family: 'Lato', 微软雅黑;
+		font-size: 100%;
+		background: #fff;
+	}
+	body {
+		padding-top: 70px;
+	}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header" style="margin-left: 40px;">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">首页</a>
+			</div>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">题库管理<span class="sr-only">(current)</span></a></li>
+					<li><a href="#">试卷管理</a></li>
+					<li><a href="#">考试管理</a></li>
+					<li><a href="#">成绩管理</a></li>
+					<li><a href="#">系统管理</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" style="margin-top: 0"
+							placeholder="输入关键词">
+					</div>
+					<button type="submit" class="btn btn-default">搜索</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">登录</a></li>
+					<li><a href="#">注册</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">个人中心<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">账户设置</a></li>
+							<li><a href="#">成绩管理</a></li>
+							<li><a href="#">考试入口</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">退出登录</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid" style="padding-left: 0;">
+		<div class="row-fluid">
+			<div class="col-xs-12 col-md-3 col-lg-3" style="padding-left: 0;">
+				<div class="user-img-div">
+					<img src="../images/20160322162501.jpg" class="img-thumbnail">
+					<div class="inner-text"
+						style="float: right; margin-top: 20px; padding-right: 12px;">
+						<label id="username">UserName</label><br /> <span
+							class="glyphicon glyphicon-cog"></span><a href="#"
+							class="inner-text" style="font-size: 1.2em">账户设置</a>
+					</div>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item">题库管理</li>
+					<li id="questionTypeList" class="dropdown list-group-item">		
+						<a href="#" class="dropdown-toggleglyphicon" data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"><span class="glyphicon glyphicon-th-list"></span>题目列表<span class="caret"></span></a>
+						<ul class="dropdown-menu questionTypeList" style="margin-bottom:0">
+							<li><a href="#">全部题目</a></li>
+						</ul>	
+					</li>
+					<a href="addQuestions.html" class="list-group-item"><span
+						class="glyphicon glyphicon-cloud-upload"></span>添加题目</a>
+					<a href="checkQuestionType.html" class="list-group-item"><span
+						class="glyphicon glyphicon-bookmark"></span>题型管理</a>
+					<a href="checkSubject.html" class="list-group-item"><span
+						class="glyphicon glyphicon-book"></span>科目管理</a>
+					<a href="checkTips.html" class="list-group-item active"><span
+						class="glyphicon glyphicon-tags"></span>知识点管理</a>
+					<a href="#" class="list-group-item"><span
+						class="glyphicon glyphicon-trash"></span>批量删除</a>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-md-9 col-lg-9">
+				<div>
+					<h2>知识点管理</h2>
+				</div>
+				<hr />
+				<form action="../AddTips" method="post" id="myForm" name="myForm">
+					<div>
+						<label>* 科目：</label>&emsp; <select name="subject" id="subject"
+							class="selector form-control" style="width:10em;margin-bottom:12px;">
+							<option value="0">请选择...</option>
+						</select>
+					</div>
+					<div class="table-responsive">
+						<table class="table table-hover" id="Tips">
+							<tr>
+								<th>#</th>
+								<th>知识点名称</th>
+								<th>操作</th>
+							</tr>
+						</table>
+					</div>
+					<nav style="text-align:right;">
+					  <ul class="pagination" id="page" style="margin:0 10px 10px 0"></ul>
+					</nav>
+					<label id="addTips" name="0" class="btn btn-block btn-primary" style='display: none;'>点此添加一个知识点</label>
+					<p class="bg-danger" id="warning" style="padding:6px 0;text-align:center;">请先选择科目</p>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal-container-858340" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">
+						修改科目
+					</h4>
+				</div>
+				<form action="" method="post" id="UpdateTips" name="UpdateTips">
+					<div class="modal-body" style="padding-left:10em">
+						原名称：<label id="oldTips"></label><br />
+						新名称：<input type="text" name="TipsName" id="newTips" class='form-control' style="margin:5px 0;" /><br />
+						<div id="qtypeAlarming"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" onclick="editTips();" class="btn btn-primary">
+							提交修改
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							取消
+						</button> 
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<!-- 	<div id="footer-sec">Copyright © 2016.Company name All rights
+		reserved.</div> -->
+</body>
+<script type="text/javascript">
+    $(document).ready(
+			function() {
+				$.getJSON("../SubjectJson", function(jsonData) {
+					var html = "";
+					for (var i = 0; i < jsonData.length; i++) {
+						html += "<option value=\""+jsonData[i].SubjectId+"\">"
+								+ jsonData[i].SubjectName + "</option>";
+					}
+					$("#subject").append(html);
+				});
+
+				$("#addTips").click(
+						function() {
+							var count = $("#addTips").attr("name");
+							var num = parseInt(count) + 1;
+							var htm1 = "";
+							$("#addTips").attr("name",num.toString());
+							htm1 += "<tr><td>"+num+"</td><td><input type='text' name='TipsName' id='TipsName' class='form-control' /><label id='qtypeWarning'></label></td><td><a onclick='addTips();'>提交</a></td></tr>";
+							$("#Tips").append(htm1);
+							$("#myForm").attr("action","../AddTips?SubjectId="+$("#subject").val());
+						});
+				
+			});
+</script>
+<script type="text/javascript">
+	$(document).ready(
+			function(){
+				var pags=1;
+    	  		var pageNow="";
+    	  		var subject="";
+    	  		var url=window.location.search;	
+    	  		if(url.indexOf("?")!=-1){   
+    				var str=url.substr(1)   
+    				strs=str.split("&");   
+    				for(i=0;i<strs.length;i++){   
+    			    	if([strs[i].split("=")[0]]=='pageNow') pageNow=unescape(strs[i].split("=")[1]);
+    			    	if([strs[i].split("=")[0]]=='subject') subject=unescape(strs[i].split("=")[1]);					
+        			}			 	  	
+    			}
+    	  		$("#subject option[value='"+subject+"']").attr("selected",true);
+    	  		
+    	  		$.getJSON("../QTypeJson",function(jsonData){
+					var list="";
+					for(var i=0; i < jsonData.length; i++) {
+						list+="<li><a href=\"QuestionIndex.html?Qtype="+jsonData[i].QTypeId+"\" >"+jsonData[i].TypeName+"</a>";
+					}
+					$(".questionTypeList").append(list);
+				});
+				
+    			if(pageNow!=""){ 
+    	  		pags=parseInt(pageNow); 
+    			}
+				$("#subject").change(
+						function() {
+							$("div[id=page]").empty(); 
+							$("#page").empty(); 
+							if($("#subject").val()=="0"){
+								$("#Tips").empty();
+								$("#Tips").append("<tr><th>#</th><th>知识点名称</th><th>操作</th></tr>");
+								$("#addTips").css("display","none");
+								$("#warning").css("display","");
+							}else{
+								var SubjectId = $("#subject").val();
+								$("#addTips").css("display","");
+								$("#warning").css("display","none");
+								$("#Tips").empty();
+								$("#Tips").append("<tr><th>#</th><th>知识点名称</th><th>操作</th></tr>");
+								$.getJSON("../TipsJson?SubjectId="+ SubjectId,
+									function(jsonData) {
+										var html4 = "";
+										$("#addTips").attr("name",jsonData.length);
+										var count=jsonData.length;
+										var pagcount=1;
+										var percount=3;
+										if(count%percount==0){    
+											pagcount=count/percount;   
+										}else{    
+											pagcount=parseInt(count/percount)+1;   
+										}		
+										var pages="";
+										if(pags!="1"){
+											pages+="<li><a href='#?pageNow="+(pags-1)+"' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+										}
+										for(var j=1;j<=pagcount;j++){
+											pages+="<li id='page"+j+"'><a href='#?pageNow="+j+"'>"+j+"</a></li>";
+										}
+							 			if(pags!=pagcount){
+							 				pages+="<li><a href='#?pageNow="+(pags+1)+"' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
+										}   
+								 		$("#page").append(pages); 
+								 		$("#page"+pags).attr("class","active");
+										for (var i = (pags-1)*percount; i<pags*percount && i < jsonData.length; i++) {
+											html4 += "<tr><td>"+(i+1)+"</td><td>"+jsonData[i].TipsName+"</td><td><a id='modal-858340' href='#modal-container-858340' role='button' data-toggle='modal' onclick='myFunction("+jsonData[i].TipsId+",\""+jsonData[i].TipsName+"\");' >修改</a></td></tr>";
+										}
+										$("#Tips").append(html4);
+									});
+							}
+						});
+			});
+</script>
+<script>
+	function myFunction(id,name){
+		$("#oldTips").empty();
+		$("#oldTips").append(name);
+		$("#UpdateTips").attr("action","../UpdateTips?TipsId="+id);
+	} 
+
+	function addTips(){
+		var str=$("#TipsName").val();
+		$("#qtypeWarning").empty();
+		$.getJSON("../SingleJson",{table:"Tips",keyword:"TipsName",value:str},function(jsonData){
+				var isExist = jsonData.exist;
+				if(isExist=="1"){
+					$("#qtypeWarning").append("该科目已存在，无需重复添加");
+				}else{
+					myForm.submit();
+				}
+			});  
+	}
+
+	function editTips(){
+		var str=$("#newTips").val();
+		$("#qtypeAlarming").empty();
+		$.getJSON("../SingleJson",{table:"Tips",keyword:"TipsName",value:str},function(jsonData){
+				var isExist = jsonData.exist;
+				if(isExist=="1"){
+					$("#qtypeAlarming").append("与现有知识点命名重复，请修改");
+				}else{
+					UpdateTips.submit();
+				}
+			});  
+	}
+	function pagechange(SubjectId,pags){		
+		$("#Tips").empty();
+		$("#page").empty();
+		var html="<tr><th>#</th><th>知识点名称</th><th>操作</th></tr>";
+		$("#Tips").append(html);
+		$.getJSON("../TipsJson?SubjectId="+ SubjectId,
+				function(jsonData) {
+					var html4 = "";
+					$("#addTips").attr("name",jsonData.length);
+					var count=jsonData.length;
+					var pagcount=1;
+					var percount=3;
+					if(count%percount==0){    
+						pagcount=count/percount;   
+					}else{    
+						pagcount=parseInt(count/percount)+1;   
+					}
+					var pages="";
+					if(pags!="1"){						
+						pages+="<a href=#?pageNow="+(pags-1)+"&subject="+$("#subject").val()+" onclick='pagechange("+$("#subject").val()+","+(pags-1)+")'>上一页</a>";
+						 }  					
+					for(var j=1;j<=pagcount;j++){
+						pages+="<a href=#?pageNow="+j+"&subject="+$("#subject").val()+" onclick='pagechange("+$("#subject").val()+","+j+")'>["+j+"]</a>";				
+					}     
+	 				if(pags!=pagcount){
+						pages+="<a href=#?pageNow="+(pags+1)+"&subject="+$("#subject").val()+" onclick='pagechange("+$("#subject").val()+","+(pags+1)+")'>下一页</a>"; 
+					}   					 
+		 			$("#page").append(pages);	
+					for (var i = (pags-1)*percount; i<pags*percount && i < jsonData.length; i++) {
+						html4 += "<tr><td>"+(i+1)+"</td><td>"+jsonData[i].TipsName+"</td><td><a id='modal-858340' href='#modal-container-858340' role='button' data-toggle='modal' onclick='myFunction("+jsonData[i].TipsId+",\""+jsonData[i].TipsName+"\");' >修改</a></td></tr>";
+					}
+					$("#Tips").append(html4);
+		});
+	}
+</script>
+</html>

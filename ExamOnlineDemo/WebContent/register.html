@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<style>
+html, body {
+	font-family: 'Lato', 微软雅黑;
+	font-size: 100%;
+	background: #fff;
+}
+body {
+	padding-top: 70px;
+}
+p {
+	display: inline;
+	margin-left: 1em;
+}
+#count {
+	visibility: hidden;
+	margin-left: 83px
+}
+#em {
+	background: #f0ad4e;
+	width: 153px;
+	margin: 3px 0 7px 60px
+}
+em {
+	opacity: 0.5;
+	display: inline-block;
+	width: 51px;
+	text-align: center
+}
+em:first-child {
+	background: #f0ad4e;
+	opacity: 1
+}
+em.active {
+	background: #f0ad4e;
+	opacity: 1
+}
+.ati0 {
+	width: 17px;
+	height: 17px;
+	margin: 6px 0 0;
+	background: url(../images/tipicon.png);
+	background-position: 0px -32px;
+}
+.err0 {
+	width: 17px;
+	height: 17px;
+	margin: 6px 0 0;
+	background: url(../images/tipicon.png);
+	background-position: 0px -15px;
+}
+td{
+	padding-bottom:10px;
+}
+td:first-child{
+	text-align:right;
+}
+td:nth-child(2){
+	text-align:center;
+}
+td:last-child{
+	text-align:left;
+	width:30%;
+}
+.form-control{
+	margin-top:0px;
+	width:100%;
+}
+.input-group{
+	width:100%;
+}
+.glyphicon{
+	top:0;
+}
+</style>
+<title>注册</title>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header" style="margin-left: 40px;">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">首页</a>
+			</div>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="#">题库管理</a></li>
+					<li><a href="#">试卷管理</a></li>
+					<li><a href="#">考试管理</a></li>
+					<li><a href="#">成绩管理</a></li>
+					<li><a href="#">系统管理</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" style="margin-top: 0"
+							placeholder="输入关键词">
+					</div>
+					<button type="submit" class="btn btn-default">搜索</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">登录</a></li>
+					<li><a href="#">注册</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">个人中心<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">账户设置</a></li>
+							<li><a href="#">成绩管理</a></li>
+							<li><a href="#">考试入口</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">退出登录</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid" style="padding-left: 0;">
+		<div class="row-fluid">
+			<div class="col-md-2 col-lg-2"></div>
+			<div class="col-xs-12 col-md-8 col-lg-8">
+				<h2 align="center">学生注册</h2>
+				<hr />
+				<form name="register" method="post" action="Register">
+					<table align="left">
+						<tr>
+							<td>登录名：</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-user" aria-hidden="true" id="basic-addon1"></span>
+									<input type="text" name="username" id="username" class="form-control">
+								</div>
+							</td>
+							<td><b style="display:none;" id="count">0个字符</b><p class="msg" id="msg1"></p></td>
+						</tr>
+						<tr>
+							<td>密码：</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-lock" aria-hidden="true" id="basic-addon1"></span>
+									<input type="password" name="password" id="password" class="form-control" />
+								</div>
+							</td>
+							<td><p class="msg"></p></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td colspan="2" style="text-align:left;">
+								<em class="active">弱</em><em>中</em><em>强</em>
+							</td>
+						</tr>
+						<tr>
+							<td>确认密码：</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-check" aria-hidden="true" id="basic-addon1"></span>
+									<input type="password" name="Cpwd" id="Cpwd" disabled="disabled" class="form-control" />
+								</div>
+							</td>
+							<td><p class="msg">请再输入一次</p></td>
+						</tr>
+						<tr>
+							<td>联系电话：</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-earphone" aria-hidden="true" id="basic-addon1"></span>
+									<input type="text" name="Tel" id="Tel" placeholder="请填写正确的联系电话" class="form-control" />
+								</div>
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>电子邮件：</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-envelope" aria-hidden="true" id="basic-addon1"></span>
+									<input type="text" class="form-control" name="Email" id="Email" placeholder="请填写有效邮件地址，便于找回密码">
+								</div>
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<button type="submit" onclick="sub();" class="btn btn-primary">注册</button>
+								<input type="reset" value="取消" class="btn btn-primary" />
+							</td>
+							<td></td>
+						</tr>
+					</table>
+					
+				</form>
+			</div>
+			<div class="col-md-2 col-lg-2"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/registerComfirm.js"></script>
+</html>

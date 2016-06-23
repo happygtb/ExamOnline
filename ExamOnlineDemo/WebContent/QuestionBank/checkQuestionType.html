@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>题型管理</title>
+<link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../css/addQuestions.css" rel='stylesheet' type='text/css' />
+<link href="../css/check.all.css" rel='stylesheet' type='text/css' />
+<style type="text/css">
+	html, body {
+		font-family: 'Lato', 微软雅黑;
+		font-size: 100%;
+		background: #fff;
+	}
+	body {
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
+	#newQtype tr td{
+		padding:5px 5px 0 5px;
+	}
+	#editQtype tr td{
+		padding:5px 5px 0 5px;
+	}
+	table .form-control{
+		width:100%;
+	}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header" style="margin-left: 40px;">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">首页</a>
+			</div>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">题库管理<span class="sr-only">(current)</span></a></li>
+					<li><a href="#">试卷管理</a></li>
+					<li><a href="#">考试管理</a></li>
+					<li><a href="#">成绩管理</a></li>
+					<li><a href="#">系统管理</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" style="margin-top: 0"
+							placeholder="输入关键词">
+					</div>
+					<button type="submit" class="btn btn-default">搜索</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">登录</a></li>
+					<li><a href="#">注册</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">个人中心<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">账户设置</a></li>
+							<li><a href="#">成绩管理</a></li>
+							<li><a href="#">考试入口</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">退出登录</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid" style="padding-left: 0;">
+		<div class="row-fluid">
+			<div class="col-xs-12 col-md-3 col-lg-3" style="padding-left: 0;">
+				<div class="user-img-div">
+					<img src="../images/20160322162501.jpg" class="img-thumbnail">
+					<div class="inner-text"
+						style="float: right; margin-top: 20px; padding-right: 12px;">
+						<label id="username">UserName</label><br /> <span
+							class="glyphicon glyphicon-cog"></span><a href="#"
+							class="inner-text" style="font-size: 1.2em">账户设置</a>
+					</div>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item">题库管理</li>
+					<li id="questionTypeList" class="dropdown list-group-item">		
+						<a href="#" class="dropdown-toggleglyphicon" data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"><span class="glyphicon glyphicon-th-list"></span>题目列表<span class="caret"></span></a>
+						<ul class="dropdown-menu questionTypeList" style="margin-bottom:0">
+							<li><a href="#">全部题目</a></li>
+						</ul>	
+					</li>
+					<a href="addQuestions.html" class="list-group-item"><span
+						class="glyphicon glyphicon-cloud-upload"></span>添加题目</a>
+					<a href="checkQuestionType.html" class="list-group-item active"><span
+						class="glyphicon glyphicon-bookmark"></span>题型管理</a>
+					<a href="checkSubject.html" class="list-group-item"><span
+						class="glyphicon glyphicon-book"></span>科目管理</a>
+					<a href="checkTips.html" class="list-group-item"><span
+						class="glyphicon glyphicon-tags"></span>知识点管理</a>
+					<a href="#" class="list-group-item"><span
+						class="glyphicon glyphicon-trash"></span>批量删除</a>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-md-9 col-lg-9">
+				<div>
+					<h2>题型管理</h2>
+				</div>
+				<hr />
+				<div class="table-responsive">
+					<table class="table table-hover" id="QType">
+						<tr>
+							<th>#</th>
+							<th>题型名称</th>
+							<th>操作</th>
+						</tr>
+					</table>
+				</div>
+				<nav style="text-align:right;">
+				  <ul class="pagination" id="page" style="margin:0 10px 10px 0"></ul>
+				</nav>
+				<label id='modal-858341' href='#modal-container-858341' role='button' data-toggle='modal' class="btn btn-block btn-primary" onclick="emptyWarning();">点此添加自定义题型</label>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal-container-858340" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">
+						修改题型
+					</h4>
+				</div>
+				<form action="" method="post" id="updateQType" name="updateQType">
+					<div class="modal-body">
+						<table align="center" style="text-align:left;" id="editQtype">
+							<tr>
+								<td>题型名称</td>
+								<td colspan="4">
+									<input type="text" name="newQType" id="newQType" class='form-control'/>
+								</td>
+							</tr>
+							<tr id="identity">
+								<td colspan="5" align="center" id="qtypeAlarming"></td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" onclick="editQtype();" class="btn btn-primary">
+							提交修改
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							取消
+						</button> 
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal-container-858341" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">
+						添加自定义科目
+					</h4>
+				</div>
+				<form action="../AddQType" method="post" id="myForm" name="myForm">
+					<div class="modal-body" style="text-align:center;">
+						<table align="center" style="text-align:left;" id="newQtype">
+							<tr>
+								<td>题型名称</td>
+								<td colspan="4">
+									<input type="text" name="QTypeName" id="QTypeName" class='form-control' />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="5" align="center" id="qtypeWarning"></td>
+							</tr>
+							<tr id="SubQtype_1">
+								<td>子题型</td>
+								<td>
+									<select name="QType1" id="QType1" class="selector form-control" style="width: 8em;">
+										<option value="1">单选题</option>
+										<option value="2">多选题</option>
+										<option value="3">判断题</option>
+										<option value="4">简答题</option>
+									</select>
+								</td>
+								<td>数量</td>
+								<td>
+									<div class="input-group">
+ 										<input name="amount1" type="text" class="form-control" >
+  										<span class="input-group-addon" id="basic-addon2">个</span>
+									</div>
+								</td>
+								<td>
+									<label id="1" name="SCRemove1" onclick="removeSubQtype1(this.id)" class="close" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</label>
+								</td>
+							</tr>
+							<tr><td colspan="5"><label id="addSubQtype" name="1" class="btn btn-block btn-primary">点此添加一个子题型</label></td></tr>
+						</table>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" onclick="addQType();" class="btn btn-primary">
+							确认添加
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							取消
+						</button> 
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+<!-- 	<div id="footer-sec">Copyright © 2016.Company name All rights
+		reserved.</div> -->
+</body>
+<script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/checkQuestionType.js"></script>
+</html>

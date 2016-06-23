@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>删除题目</title>
+</head>
+<script>
+   function  doit(){
+        var rs=confirm("确定删除?");
+        if(rs)
+        location="../deleteQuestion";
+}
+</script>
+<body>
+<form action="deleteQuestion" method="get" enctype="multipart/form-data">
+<input type="button" name="button"  onclick="doit();" value="删除题目">
+</form>
+</body>
+</html>

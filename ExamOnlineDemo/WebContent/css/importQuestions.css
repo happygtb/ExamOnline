@@ -1,0 +1,80 @@
+
+.box {
+	position: relative;
+	float: left;
+	margin-top: 10px;
+}
+
+input.uploadFile {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	cursor: pointer;
+	width: 276px;
+	height: 36px;
+	overflow: hidden;
+}
+
+input.textbox {
+	float: left;
+	color: #999;
+	width: 30em;
+	border: 1px #ccc solid;
+}
+
+a.link {
+	float: left;
+	display: inline-block;
+	padding: 4px 16px;
+	color: #fff;
+	font: 14px "Microsoft YaHei", Verdana, Geneva, sans-serif;
+	cursor: pointer;
+	background-color: #0099ff;
+	line-height: 28px;
+	text-decoration: none;
+}
+    .user-img-div {
+	min-height: 140px;
+	padding: 20px;
+	background-color: #4380B8;
+	}
+	
+	.user-img-div img {
+		max-height: 70px;
+	}
+	
+	.user-img-div .inner-text {
+		text-align: right;
+		position: relative;
+		color: #fff;
+		font-weight: 800;
+		line-height: 25px;
+	}
+	
+	.list-group-item:first-child {
+		border-radius: 0;
+	}
+	
+	.list-group a {
+		text-indent: 1.2em;
+	    text-decoration: none;
+	    color: #777;
+	}
+	
+	.glyphicon {
+		padding-right: 0.5em;
+	}
+	
+	#footer-sec {
+		background-color: #4380B8;
+		margin-top: 20px;
+		padding: 20px 50px;
+		color: #fff;
+		font-size: 12px;
+		position: fixed;
+    	right: 0;
+    	left: 0;
+    	bottom:0;
+	}

@@ -1,0 +1,79 @@
+#star {
+	position: relative;
+	margin: auto;
+	height: 24px;
+}
+
+#star ul, #star span {
+	float: left;
+	display: inline;
+	height: 19px;
+	line-height: 19px;
+}
+
+#star ul {
+	margin: 0 10px;
+}
+
+#star li {
+	float: left;
+	width: 24px;
+	cursor: pointer;
+	text-indent: -9999px;
+	background: url(../images/star.png) no-repeat;
+}
+
+#star strong {
+	color: #4380B8;
+	padding-left: 10px;
+}
+
+#star li.on {
+	background-position: 0 -28px;
+}
+
+#star p em {
+	color: #f60;
+	display: block;
+	font-style: normal;
+}
+
+.user-img-div {
+	min-height: 140px;
+	padding: 20px;
+	background-color: #4380B8;
+}
+
+.user-img-div img {
+	max-height: 70px;
+}
+
+.user-img-div .inner-text {
+	text-align: right;
+	position: relative;
+	color: #fff;
+	font-weight: 800;
+	line-height: 25px;
+}
+
+.list-group-item:first-child {
+	border-radius: 0;
+}
+
+.list-group a {
+	text-indent: 1.2em;
+	text-decoration: none;
+	color: #777;
+}
+
+.glyphicon {
+	padding-right: 0.5em;
+}
+
+#footer-sec {
+	background-color: #4380B8;
+	margin-top: 20px;
+	padding: 20px 50px;
+	color: #fff;
+	font-size: 12px;
+}
